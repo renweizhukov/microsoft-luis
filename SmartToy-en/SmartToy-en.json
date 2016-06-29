@@ -1,0 +1,502 @@
+{
+  "luis_schema_version": "1.3.0",
+  "name": "SmartToy-en",
+  "desc": "",
+  "culture": "en-us",
+  "intents": [
+    {
+      "name": "PlayStory"
+    },
+    {
+      "name": "GetTime"
+    },
+    {
+      "name": "PlayMusic"
+    },
+    {
+      "name": "Stop"
+    },
+    {
+      "name": "Start"
+    },
+    {
+      "name": "Pause"
+    },
+    {
+      "name": "None"
+    },
+    {
+      "name": "Resume"
+    }
+  ],
+  "entities": [
+    {
+      "name": "StoryGenres",
+      "children": [
+        "Contemporary Realistic Fiction",
+        "Historical Fiction",
+        "Biography",
+        "Traditional Literature",
+        "Poetry",
+        "Modern Fantasy",
+        "Science Fiction"
+      ]
+    },
+    {
+      "name": "Date",
+      "children": [
+        "StartDate",
+        "EndDate"
+      ]
+    },
+    {
+      "name": "MusicGenres",
+      "children": [
+        "Children",
+        "Classical",
+        "Electronic",
+        "Rock",
+        "Popular",
+        "Jazz",
+        "Religious"
+      ]
+    },
+    {
+      "name": "Singer"
+    },
+    {
+      "name": "StoryAuthor"
+    }
+  ],
+  "composites": [],
+  "bing_entities": [
+    "geography",
+    "encyclopedia",
+    "number",
+    "ordinal"
+  ],
+  "actions": [
+    {
+      "actionName": "PlayMusic",
+      "intentName": "PlayMusic",
+      "actionParameters": [
+        {
+          "parameterName": "Genre",
+          "entityName": "MusicGenres",
+          "required": false
+        },
+        {
+          "parameterName": "Singer",
+          "entityName": "Singer",
+          "required": false
+        },
+        {
+          "parameterName": "Date",
+          "entityName": "Date",
+          "required": false
+        }
+      ]
+    },
+    {
+      "actionName": "GetTime",
+      "intentName": "GetTime",
+      "actionParameters": [
+        {
+          "parameterName": "Location",
+          "entityName": "geography",
+          "required": true
+        }
+      ]
+    },
+    {
+      "actionName": "PlayStory",
+      "intentName": "PlayStory",
+      "actionParameters": [
+        {
+          "parameterName": "Genre",
+          "entityName": "StoryGenres",
+          "required": false
+        },
+        {
+          "parameterName": "Author",
+          "entityName": "StoryAuthor",
+          "required": false
+        },
+        {
+          "parameterName": "Date",
+          "entityName": "Date",
+          "required": false
+        }
+      ]
+    }
+  ],
+  "model_features": [
+    {
+      "name": "StartPhrases",
+      "mode": true,
+      "words": "start,begin,launch",
+      "activated": true
+    },
+    {
+      "name": "ResumePhrases",
+      "mode": true,
+      "words": "resume,continue",
+      "activated": true
+    }
+  ],
+  "regex_features": [],
+  "utterances": [
+    {
+      "text": "listen to a story from 1980 to 1990.",
+      "intent": "PlayStory",
+      "entities": [
+        {
+          "entity": "Date::StartDate",
+          "startPos": 5,
+          "endPos": 5
+        },
+        {
+          "entity": "Date::EndDate",
+          "startPos": 7,
+          "endPos": 7
+        }
+      ]
+    },
+    {
+      "text": "play the music in 1980s",
+      "intent": "PlayMusic",
+      "entities": [
+        {
+          "entity": "Date",
+          "startPos": 4,
+          "endPos": 4
+        }
+      ]
+    },
+    {
+      "text": "play a song",
+      "intent": "PlayMusic",
+      "entities": []
+    },
+    {
+      "text": "listen to a story",
+      "intent": "PlayStory",
+      "entities": []
+    },
+    {
+      "text": "play the second song",
+      "intent": "PlayMusic",
+      "entities": []
+    },
+    {
+      "text": "play two stories",
+      "intent": "PlayStory",
+      "entities": []
+    },
+    {
+      "text": "play taylor swift's song",
+      "intent": "PlayMusic",
+      "entities": [
+        {
+          "entity": "Singer",
+          "startPos": 1,
+          "endPos": 2
+        }
+      ]
+    },
+    {
+      "text": "play one jay chow's song",
+      "intent": "PlayMusic",
+      "entities": [
+        {
+          "entity": "Singer",
+          "startPos": 2,
+          "endPos": 3
+        }
+      ]
+    },
+    {
+      "text": "play some classic music",
+      "intent": "PlayMusic",
+      "entities": [
+        {
+          "entity": "MusicGenres::Classical",
+          "startPos": 2,
+          "endPos": 2
+        }
+      ]
+    },
+    {
+      "text": "play some rock music",
+      "intent": "PlayMusic",
+      "entities": [
+        {
+          "entity": "MusicGenres::Rock",
+          "startPos": 2,
+          "endPos": 2
+        }
+      ]
+    },
+    {
+      "text": "i want to hear some harry potter",
+      "intent": "PlayStory",
+      "entities": [
+        {
+          "entity": "StoryGenres::Modern Fantasy",
+          "startPos": 5,
+          "endPos": 6
+        }
+      ]
+    },
+    {
+      "text": "want to hear andersen's fairy tale",
+      "intent": "PlayStory",
+      "entities": [
+        {
+          "entity": "StoryAuthor",
+          "startPos": 3,
+          "endPos": 3
+        },
+        {
+          "entity": "StoryGenres::Traditional Literature",
+          "startPos": 6,
+          "endPos": 7
+        }
+      ]
+    },
+    {
+      "text": "play two green's fairy tale stories",
+      "intent": "PlayStory",
+      "entities": [
+        {
+          "entity": "StoryAuthor",
+          "startPos": 2,
+          "endPos": 2
+        },
+        {
+          "entity": "StoryGenres::Traditional Literature",
+          "startPos": 5,
+          "endPos": 6
+        }
+      ]
+    },
+    {
+      "text": "start playing",
+      "intent": "Start",
+      "entities": []
+    },
+    {
+      "text": "stop playing",
+      "intent": "Stop",
+      "entities": []
+    },
+    {
+      "text": "resume playing",
+      "intent": "Resume",
+      "entities": []
+    },
+    {
+      "text": "continue",
+      "intent": "Resume",
+      "entities": []
+    },
+    {
+      "text": "pause",
+      "intent": "Pause",
+      "entities": []
+    },
+    {
+      "text": "what time is it in beijing?",
+      "intent": "GetTime",
+      "entities": []
+    },
+    {
+      "text": "what time is it in new york?",
+      "intent": "GetTime",
+      "entities": []
+    },
+    {
+      "text": "what time is it in seattle?",
+      "intent": "GetTime",
+      "entities": []
+    },
+    {
+      "text": "what time is it?",
+      "intent": "GetTime",
+      "entities": []
+    },
+    {
+      "text": "what time is it in san jose?",
+      "intent": "GetTime",
+      "entities": []
+    },
+    {
+      "text": "what time is it in shanghai?",
+      "intent": "GetTime",
+      "entities": []
+    },
+    {
+      "text": "play two songs",
+      "intent": "PlayMusic",
+      "entities": []
+    },
+    {
+      "text": "what time is it in tongjiang?",
+      "intent": "GetTime",
+      "entities": []
+    },
+    {
+      "text": "play the second song.",
+      "intent": "PlayMusic",
+      "entities": []
+    },
+    {
+      "text": "play the 4th story.",
+      "intent": "PlayStory",
+      "entities": []
+    },
+    {
+      "text": "play two stories.",
+      "intent": "PlayStory",
+      "entities": []
+    },
+    {
+      "text": "shut down.",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "turn on.",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "search for news about africa.",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "find news about china.",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "play two rock songs",
+      "intent": "PlayMusic",
+      "entities": [
+        {
+          "entity": "MusicGenres::Rock",
+          "startPos": 2,
+          "endPos": 2
+        }
+      ]
+    },
+    {
+      "text": "begin",
+      "intent": "Start",
+      "entities": []
+    },
+    {
+      "text": "launch the app",
+      "intent": "Start",
+      "entities": []
+    },
+    {
+      "text": "continue playing",
+      "intent": "Resume",
+      "entities": []
+    },
+    {
+      "text": "play four stories",
+      "intent": "PlayStory",
+      "entities": []
+    },
+    {
+      "text": "play two music",
+      "intent": "PlayMusic",
+      "entities": []
+    },
+    {
+      "text": "what time is it in beijing",
+      "intent": "GetTime",
+      "entities": []
+    },
+    {
+      "text": "what time is it in seattle",
+      "intent": "GetTime",
+      "entities": []
+    },
+    {
+      "text": "play three songs",
+      "intent": "PlayMusic",
+      "entities": []
+    },
+    {
+      "text": "play four songs",
+      "intent": "PlayMusic",
+      "entities": []
+    },
+    {
+      "text": "what is the time",
+      "intent": "GetTime",
+      "entities": []
+    },
+    {
+      "text": "what time is it beijing",
+      "intent": "GetTime",
+      "entities": []
+    },
+    {
+      "text": "what time is it",
+      "intent": "GetTime",
+      "entities": []
+    },
+    {
+      "text": "let's chat",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "play beyonce's song",
+      "intent": "PlayMusic",
+      "entities": [
+        {
+          "entity": "Singer",
+          "startPos": 1,
+          "endPos": 1
+        }
+      ]
+    },
+    {
+      "text": "play kendrick take's song",
+      "intent": "PlayMusic",
+      "entities": [
+        {
+          "entity": "Singer",
+          "startPos": 1,
+          "endPos": 2
+        }
+      ]
+    },
+    {
+      "text": "ronald reagan",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "who is chairman mao?",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "i hate george bush.",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "play the cougar song.",
+      "intent": "PlayMusic",
+      "entities": []
+    }
+  ]
+}

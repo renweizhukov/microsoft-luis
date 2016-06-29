@@ -1,4 +1,5 @@
-#! python3
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 
 from projectoxford.speech import SpeechClient
 sc = SpeechClient("0504570918ad49c9af264f1c2d94787e", gender='Female', locale='en-US')
